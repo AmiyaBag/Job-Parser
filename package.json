@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "@mgwalker/chartjs-node": "^0.0.2",
+    "body-parser": "^1.20.2",
+    "chart.js": "^4.4.3",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "mongodb": "^6.6.0",
+    "mongoose": "^8.3.3"
+  }
+}

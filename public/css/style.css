@@ -1,0 +1,71 @@
+*{
+	font-family: Montserrat;
+}
+#myInput {
+	width: 98%; /* Полная ширина */
+	font-size: 16px; /* Увеличить размер шрифта */
+	padding: 12px;/* 0px 12px 12px; /* Добавить немного отступов */
+	border: 1px solid #ddd; /* Добавить серую границу */
+	margin-bottom: 12px; /* Добавить некоторое пространство под входом */
+  }
+  #myInput:focus {
+	border-color: #9df4d0; /* Изменяем цвет границы на красный при нажатии */
+  }
+  #table {
+	border-collapse: collapse; /* Свернуть границы */
+	width: 100%; /* Полная ширина */
+	border: 1px solid #ddd; /* Добавить серую границу */
+	font-size: 16px; /* Увеличить размер шрифта */
+  }
+  
+  #table th, #table td {
+	text-align: left; /* Выравнивание текста по левому краю */
+	padding: 12px; /* Добавить отступ */
+  }
+  #table th {
+	background-color: #b7b3ff;
+  }
+  
+  #table tr {
+	/* Добавить нижнюю границу для всех строк таблицы */
+	border-bottom: 1px solid #ddd;
+  }
+  
+  #table tr.header, #table tr:hover {
+	/* Добавить серый цвет фона для заголовка таблицы и при наведении курсора мыши */
+	background-color: #e4e3ff;
+  }
+
+  #diagrams {
+	display: flex;
+	justify-content: center;
+	gap: 100px;
+  }
+
+  #columnSelect{
+	border: 1px solid #ddd;
+	font-size: 16px;
+	padding: 5px;
+	margin-bottom: 12px;
+  }
+
+  #search {
+	display: flex;
+	justify-content: center;
+	gap: 5px;
+  }
+
+  a:link {
+	text-decoration: none;
+	color: black;
+  }
+  a:visited {
+	text-decoration: none;
+	color: black;
+  }
+  a:hover {
+	text-decoration: underline;
+  }
+  a:active {
+	text-decoration: underline;
+  }

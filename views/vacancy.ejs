@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vacancies</title>
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <script src= "https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"> </script> 
+    <script src= "https://cdn.jsdelivr.net/npm/chart.js@4.0.1/dist/chart.umd.min.js"> </script>
+    <script src="https://cdn.anychart.com/releases/8.9.0/js/anychart-base.min.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      // Диаграмма ГОРОДОВ
+      fetch('/data1')
+        .then(response => response.json())
+        .then(data_city => {
+          const ctx = document.getElementById('myChart_city').getContext('2d');
+          const name_city = data_city.map(item => item.name);
+          const count_city = data_city.map(item => item.count);
+          new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+              labels: name_city,
+              datasets: [{
+                label: 'Количество',
+                data: count_city,
+                borderWidth: 0,
+                backgroundColor: ['#a49df4', '#9df4d0',  
+                    '#D4A1F0', '#DBD9FF', '#83DAF2']
+              }]
+            },
+          });
+        });
+    </script>
+    <script>
+      // Диаграмма ЗАРПЛАТЫ
+      fetch('/data2')
+        .then(response => response.json())
+        .then(data_salary => {
+          const ctx = document.getElementById('myChart_salary').getContext('2d');
+          const name_salary = data_salary.map(item => item.name);
+          const count_salary = data_salary.map(item => item.count);
+          new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: name_salary,
+              datasets: [{
+                  label: 'Количество',
+                  data: count_salary,
+                  borderWidth: 0,
+                  backgroundColor: ['#a49df4', '#9df4d0',  
+                    '#D4A1F0', '#DBD9FF', '#83DAF2']
+              }]
+            },
+          });
+        });
+    </script>
+    <script>
+      function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("table");
+        tr = table.getElementsByTagName("tr");
+        var selectElem = document.getElementById("columnSelect");
+        var columnIndex = columnSelect.selectedIndex;
+        selectElem.addEventListener("change", function () {
+          var columnIndex = columnSelect.selectedIndex;
+        });
+        for (i = 0; i < tr.length; i++) {
+          td = tr[i].getElementsByTagName("td")[columnIndex];
+          if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+            } else {
+              tr[i].style.display = "none";
+            }
+          }
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="diagrams">
+      <div id="Chart_city">
+        <h3>Топ 5 городов:</h3>
+        <div>
+          <canvas id="myChart_city"></canvas>
+        </div>
+      </div>
+      <div id="Chart_salary">
+        <h3>Анализ по зарплате:</h3>
+        <div style="width:700px">
+          <canvas id="myChart_salary"></canvas>
+        </div>
+      </div>
+    </div>
+    <h3>Таблица вакансий:</h3>
+    <div id="search">
+      <select id="columnSelect" onchange="myFunction()">
+        <option>Номер</option>
+        <option>Дата</option>
+        <option selected>Название</option>
+        <option>Зарплата</option>
+        <option>Город</option>
+      </select>
+      <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Поиск">
+    </div>
+    <table id="table">
+      <tr>
+          <th>Номер</th>
+          <th>Дата</th>
+          <th>Название</th>
+          <th>Зарплата</th>
+          <th>Город</th>
+        </tr>
+        <% vacancies.forEach((vacancy, index) => { %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td><%= vacancy.date %></td>
+          <td><a href=<%= vacancy.link %>><%= vacancy.name %></a></td>
+          <td><%= vacancy.salary %></td>
+          <td><%= vacancy.city %></td>
+        </tr>
+      <% }); %>
+    </table>
+  </body>
+</html>
